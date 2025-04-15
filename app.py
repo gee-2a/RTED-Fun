@@ -32,13 +32,13 @@ emotion_dict = {
     3: "Happy", 4: "Neutral", 5: "Sad", 6: "Surprised"
 }
 emoji_dist = {
-    0: "static/emojis/angry.jpeg",
-    1: "static/emojis/disgust.png",
-    2: "static/emojis/fear.jpeg",
-    3: "static/emojis/happy.jpeg",
-    4: "static/emojis/neutral.jpeg",
-    5: "static/emojis/sad.jpeg",
-    6: "static/emojis/surprise.jpeg"
+    0: "angry.jpeg",
+    1: "disgust.png",
+    2: "fear.jpeg",
+    3: "happy.jpeg",
+    4: "neutral.jpeg",
+    5: "sad.jpeg",
+    6: "surprise.jpeg"
 }
 
 # Globals
