@@ -6,8 +6,8 @@ from tensorflow.keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPooling2
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
-train_dir = 'archive (1)/train'
-val_dir = 'archive (1)/test'
+train_dir = 'train'        # tain path
+val_dir = 'test'           # tain path
 train_datagen = ImageDataGenerator(rescale=1./255)
 val_datagen = ImageDataGenerator(rescale=1./255)
 
