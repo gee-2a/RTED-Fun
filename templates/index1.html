@@ -1,1 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Photo to Emoji</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+        }
+        .webcam, .emotion-block {
+            margin: 10px;
+        }
+        #emoji-img {
+            border: 5px solid white;
+            border-radius: 20px;
+        }
+        #emotion-text {
+            font-size: 36px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-size: 48px;">Photo to Emoji</h1>
 
+    <div class="container">
+        <div class="webcam">
+            <img src="{{ url_for('video_feed') }}" width="640" height="480" />
+        </div>
+        <div class="emotion-block">
+            <div id="emotion-text">Neutral</div>
+            <img id="emoji-img" src="static/emojis/neutral.jpeg" width="300" height="300" />
+            <audio id="emotion-audio" autoplay>
+                <source src="static/songs/neutral.mp3" type="audio/mp3">
+            </audio>
+        </div>
+    </div>
+
+    <script>
+        let lastEmotion = "";
+
+        function fetchEmotion() {
+            fetch('/emotion')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.emotion !== lastEmotion) {
+                        lastEmotion = data.emotion;
+                        document.getElementById('emotion-text').innerText = data.emotion;
+                        document.getElementById('emoji-img').src = data.emoji;
+                        const audio = document.getElementById('emotion-audio');
+                        audio.src = data.song;
+                        audio.play();
+                    }
+                });
+        }
+
+        setInterval(fetchEmotion, 10000); // fetch every 10 seconds
+    </script>
+</body>
+</html>

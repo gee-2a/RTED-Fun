@@ -1,1 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Emotion Detection Game</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #1f1c2c, #928dab);
+      color: white;
+      text-align: center;
+    }
 
+    h1 {
+      margin-top: 20px;
+      font-size: 36px;
+      text-shadow: 2px 2px #000;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    img {
+      border-radius: 20px;
+      border: 3px solid white;
+      width: 480px;
+      height: 360px;
+      object-fit: cover;
+    }
+
+    #target, #current {
+      font-size: 22px;
+      margin-top: 15px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background-color: #6a11cb;
+      background-image: linear-gradient(315deg, #6a11cb 0%, #2575fc 74%);
+      color: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    }
+
+    button:hover {
+      background-image: linear-gradient(315deg, #2575fc 0%, #6a11cb 74%);
+    }
+
+    #result {
+      font-size: 24px;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    #history {
+      margin: 40px auto 60px;
+      width: 90%;
+      max-width: 700px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: left;
+      backdrop-filter: blur(10px);
+    }
+
+    #history h2 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid white;
+      padding-bottom: 5px;
+    }
+
+    #log {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    #log li {
+      margin-bottom: 10px;
+    }
+
+    #quit {
+      background: #e52d27;
+      background-image: linear-gradient(to right, #e52d27, #b31217);
+    }
+  </style>
+</head>
+<body>
+  <h1>🎯 Mimic the Emotion Challenge 🎭</h1>
+
+  <div class="container">
+    <div class="column">
+      <img id="video_feed" src="{{ url_for('video_feed') }}">
+      <div id="current">Current: Neutral</div>
+    </div>
+
+    <div class="column">
+      <img id="target_emoji" src="{{ url_for('static', filename='emojis/neutral.jpeg') }}">
+      <div id="target">Target: Neutral</div>
+      <button onclick="startChallenge()">Start Challenge</button>
+      <button id="quit" onclick="quitGame()">Quit Game</button>
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <div id="history">
+    <h2>🎉 Challenge Results</h2>
+    <ul id="log"></ul>
+  </div>
+
+ 
+
+  <script>
+    async function startChallenge() {
+      const response = await fetch('/start_challenge');
+      const data = await response.json();
+
+      document.getElementById('target').innerText = 'Target: ' + data.emotion;
+      document.getElementById('target_emoji').src = data.emoji;
+
+      setTimeout(async () => {
+        const resp = await fetch('/get_current_emotion');
+        const result = await resp.json();
+        document.getElementById('current').innerText = 'Current: ' + result.emotion; 
+
+        let log = document.getElementById("log");
+        let li = document.createElement("li"); 
+
+        if (result.emotion === data.emotion) {
+          document.getElementById('result').innerText = '✅ Matched!';
+          li.innerHTML = `✅ You matched <b>${data.emotion}</b>`;
+        } else {
+          document.getElementById('result').innerText = '❌ Not Matched!';
+          li.innerHTML = `❌ You showed <b>${result.emotion}</b> instead of <b>${data.emotion}</b>`;
+        }
+
+        log.appendChild(li);
+      }, 5000);
+    }
+
+    function quitGame() {
+      alert("Thanks for playing! Reload the page to play again.");
+      window.location.reload();
+    }
+
+    // Live update of current emotion
+    setInterval(async () => {
+      const resp = await fetch('/get_current_emotion');
+      const result = await resp.json();
+      document.getElementById('current').innerText = 'Current: ' + result.emotion;
+    }, 2000);
+  </script>
+</body>
+</html>
