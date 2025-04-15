@@ -6,18 +6,9 @@
 1. **Emotion Reaction Mode (`app1.py`)** – Detects user emotions in real time and responds with matching **emojis** and **songs**.
 2. **Emotion Mimic Game (`app.py`)** – Challenges the user to mimic randomly selected emotions and checks if their expression matches!
 
-## 📁 Folder Structure
-RTED-FUN/
-├── app1.py           # Emotion-based reaction mode (emojis + songs)
-├── app.py         # Emotion mimic game mode
-├── train.py         # CNN model architecture and training
-├── templates/
-│   ├── index.html   # UI for emotion mimic game
-│   └── index1.html  # UI for emoji + song reaction mode
-├── static/
-│   ├── emojis/      # Emoji images (happy.png, sad.png, etc.)
-│   └── songs/       # Emotion-specific songs (happy.mp3, angry.mp3, etc.)
-└── README.md        # Project 
+
+RTED-FUN (Real-Time Emotion Detection – FUN Edition) is an interactive web application that combines real-time emotion recognition with engaging visual and audio reactions. Using a webcam and a trained CNN model, the app detects facial emotions and either reacts with matching emojis and emotion-specific songs or challenges users to mimic displayed emotions as part of a fun game mode. Built with Flask, OpenCV, and deep learning, RTED-FUN aims to make emotion AI both entertaining and educational, offering users a playful way to explore emotion detection technology.
+
 
  Add Your Emojis and Songs
 
