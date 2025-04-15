@@ -31,22 +31,22 @@ emotion_dict = {
     3: "Happy", 4: "Neutral", 5: "Sad", 6: "Surprised"
 }
 emoji_dist = {
-    0: "static/emojis/angry.jpeg",
-    1: "static/emojis/disgust.png",
-    2: "static/emojis/fear.jpeg",
-    3: "static/emojis/happy.jpeg",
-    4: "static/emojis/neutral.jpeg",
-    5: "static/emojis/sad.jpeg",
-    6: "static/emojis/surprise.jpeg"
+    0: "angry.jpeg",
+    1: "disgust.png",
+    2: "fear.jpeg",
+    3: "happy.jpeg",
+    4: "neutral.jpeg",
+    5: "sad.jpeg",
+    6: "surprise.jpeg"
 }
 song_path = {
-    0: "static/songs/angry.mp3",
-    1: "static/songs/disgust.mp3",
-    2: "static/songs/fear.mp3",
-    3: "static/songs/happy.mp3",
-    4: "static/songs/neutral.mp3",
-    5: "static/songs/sad.mp3",
-    6: "static/songs/surprise.mp3"
+    0: "angry.mp3",
+    1: "disgust.mp3",
+    2: "fear.mp3",
+    3: "happy.mp3",
+    4: "neutral.mp3",
+    5: "sad.mp3",
+    6: "surprise.mp3"
 }
 
 last_emotion = 4  # Neutral
