@@ -7,19 +7,17 @@
 2. **Emotion Mimic Game (`app.py`)** – Challenges the user to mimic randomly selected emotions and checks if their expression matches!
 
 ## 📁 Folder Structure
-
 RTED-FUN/
-	app.py              # Emotion-based reaction mode (emojis + songs)
-	 appp1.py            # Emotion mimic game mode
-	train.py            # Model training or architecture script
-	templates/
-		index.html      # Main interface for emotion mimic 
-  		index1.html     # Main interface for emotion reaction
-	static/
-		emojis/         # (User-provided) Emoji images for each emotion
-		songs/          # (User-provided) Songs for each emotion
-	 README.md           # You’re reading it!
-
+├── app1.py           # Emotion-based reaction mode (emojis + songs)
+├── app.py         # Emotion mimic game mode
+├── train.py         # CNN model architecture and training
+├── templates/
+│   ├── index.html   # UI for emotion mimic game
+│   └── index1.html  # UI for emoji + song reaction mode
+├── static/
+│   ├── emojis/      # Emoji images (happy.png, sad.png, etc.)
+│   └── songs/       # Emotion-specific songs (happy.mp3, angry.mp3, etc.)
+└── README.md        # Project 
 
  Add Your Emojis and Songs
 
